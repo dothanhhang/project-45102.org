@@ -62,29 +62,39 @@
 
 
     <h1>My dearly future!</h1>
+
+
+    <a href="/sendMail">Đăng ký thành viên </a>
+
+    <!--Đoạn này Hằng và Minh code-->
+    <form action="/sendMail">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nguoi gui </label>
+            <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                   aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail2">To </label>
+            <input type="email" class="form-control" id="exampleInputEmail2"
+                   aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="WriteDate">Sending on </label>
+            <input type="datetime-local" class="form-control" id="WriteDate"
+                   aria-describedby="Date" placeholder="Ender Sending Date">
+        </div>
+
+        <div class="form-group">
+            <label for="InputLetter">Input your letter here</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1"
+                      rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
 </div>
-
-<a href="/sendMail">Đăng ký thành viên </a>
-
-<!--Đoạn này Hằng và Minh code-->
-<form action="/sendMail">
-    <label for="exampleInputEmail1">Nguoi gui </label>
-    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-
-    </br>
-    <label for="exampleInputEmail2">To </label>
-    <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
-</br>
-    <label for="WriteDate">Sending on </label>
-    <input type="datetime-local" class="form-control" id="WriteDate" aria-describedby="Date" placeholder="Ender Sending Date">
-</br>
-    <div class="form-group">
-        <label for="InputLetter">Input your letter here</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-
-    <button  type="submit" class="btn btn-primary">Submit</button>
-</form>
 
 <!--các file js sau đây luôn luôn nên import ở cuối của body, để giảm thời gian load nội dung-->
 <script src="assets/jquery/jquery.js"
