@@ -1,13 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--Them link bootstrap-->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
+
     <title>Bức thư gửi tương lai</title>
 </head>
 <body>
@@ -34,13 +37,13 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
-                        Dropdown
+                        Your
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Write to Future</a>
+                        <a class="dropdown-item" href="#">Your Mailbox</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Draft</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -56,8 +59,32 @@
             </form>
         </div>
     </nav>
+
+
     <h1>My dearly future!</h1>
 </div>
+
+<a href="/sendMail">Đăng ký thành viên </a>
+
+<!--Đoạn này Hằng và Minh code-->
+<form action="/sendMail">
+    <label for="exampleInputEmail1">Nguoi gui </label>
+    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+
+    </br>
+    <label for="exampleInputEmail2">To </label>
+    <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
+</br>
+    <label for="WriteDate">Sending on </label>
+    <input type="datetime-local" class="form-control" id="WriteDate" aria-describedby="Date" placeholder="Ender Sending Date">
+</br>
+    <div class="form-group">
+        <label for="InputLetter">Input your letter here</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+
+    <button  type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 <!--các file js sau đây luôn luôn nên import ở cuối của body, để giảm thời gian load nội dung-->
 <script src="assets/jquery/jquery.js"
