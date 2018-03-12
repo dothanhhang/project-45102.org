@@ -67,24 +67,29 @@
     <a href="/sendMail">Đăng ký thành viên </a>
 
     <!--Đoạn này Hằng và Minh code-->
-    <form action="/sendMail">
+    <form action="/sendMail" method="post">
         <div class="form-group">
-            <label for="exampleInputEmail1">Nguoi gui </label>
-            <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+            <label for="formGroupExampleInput1">Tên người gửi </label>
+            <input name="namef" type="text" class="form-control" id="formGroupExampleInput1" placeholder="Enter name">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email người gửi </label>
+            <input name="emailf" type="email" class="form-control" id="exampleInputEmail1"
                    aria-describedby="emailHelp" placeholder="Enter email">
         </div>
 
         <div class="form-group">
-            <label for="exampleInputEmail1">Nguoi gui </label>
-            <input name="email" type="email" class="form-control" id="exampleInputEmail1"
-                   aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="formGroupExampleInput2">Tên người nhận</label>
+            <input name="namet" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Enter name">
         </div>
 
         <div class="form-group">
-            <label for="exampleInputEmail2">To </label>
-            <input type="email" class="form-control" id="exampleInputEmail2"
+            <label for="exampleInputEmail2">Email người nhận </label>
+            <input name="emailt" type="email" class="form-control" id="exampleInputEmail2"
                    aria-describedby="emailHelp" placeholder="Enter email">
         </div>
+
         <div class="form-group">
             <label for="WriteDate">Sending on </label>
             <input type="datetime-local" class="form-control" id="WriteDate"

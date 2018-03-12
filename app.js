@@ -2,6 +2,7 @@
 
 let express = require('express')
 var bodyParser = require('body-parser');
+var urlencodeParser = bodyParser.urlencoded({extended: false})
 
 let app = express()
 
@@ -19,9 +20,16 @@ app.get('/',(req, res) => {
     res.status(200).render('index')
 })
 
-app.get('/sendMail',  (req,res)=> {
+app.post('/sendMail',urlencodeParser, function (req, res) {
+
     console.log('get request for /')
-    res.send('Hellooooooooooo')
+    var namef = req.body.namef
+    var emailf = req.body.emailf
+    var namet = req.body.namef
+    var emailt = req.body.emailt
+
+    res.status(200).send(emailt)
+
 })
 
 app.listen(app.get('port'),() =>{
