@@ -3,7 +3,7 @@
 require('dotenv').config()
 
 let Email = require('./models/email')
-let mailler = require('nodemailer')
+let nodemailer = require('nodemailer')
 
 let express = require('express')
 var bodyParser = require('body-parser')
@@ -42,10 +42,10 @@ app.listen(app.get('port'), () => {
 function parseEmailFromRequest (req) {
   let email = new Email()
 
+  email.setFrom(req.body.from_email)
   email.setFromName(req.body.from_name)
-  email.setFromName(req.body.from_email)
-  email.setFromName(req.body.to_name)
-  email.setFromName(req.body.to_email)
+  email.setTo(req.body.to_email)
+  email.setToName(req.body.to_name)
 
   return email
 }
@@ -55,13 +55,34 @@ function validateEmail () {
 }
 
 function sendMail (email) {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'thuguituonglai45102@gmail.com',
+      pass: '135792468abc'
+    }
+  })
 
+  var mailOptions = {
+    from: email.getFrom(),
+    to: email.getTo(),
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  }
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Email sent: ' + info.response)
+    }
+  })
 }
 
 function placeEmailToQueue (email) {
-  setTimeout(10, () => sendMail(email))
+  setTimeout(() => sendMail(email), 1000)
 }
 
-function writeEmailToDatabase () {
+function writeEmailToDatabase (email) {
 
 }
