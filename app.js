@@ -1,75 +1,88 @@
 'use strict'
 
-// TODO: sử dụng file .env như của project TodayImDone
+require('dotenv').config()
 
-let Email = require('models/email')
-let mailler = require('nodemailer')
+let Email = require('./models/email')
+let nodemailer = require('nodemailer')
 
 let express = require('express')
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser')
 var urlencodeParser = bodyParser.urlencoded({extended: false})
 
 let app = express()
 let debug = false
 
-//TODO: đọc PORT từ .env
-app.set('port',8000)
-app.set('view engine','ejs')
+app.set('port', process.env.PORT)
+app.set('view engine', 'ejs')
 
+// chỉ định thư mục static
 app.use(express.static(`${__dirname}/public`))
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({extended: true})) // for parsing application/x-www-form-urlencoded
 
-// Đây là thủ thuật để đưa đường dẫn vào trong thư mục bất kỳ
-
-app.get('/',(req, res) => {
-    res.status(200).render('index')
+app.get('/', (req, res) => {
+  res.status(200).render('index')
 })
 
-app.post('/sendMail',urlencodeParser, function (req, res) {
-    if (debug) console.log('got send email request')
-    let email = parseEmailFromRequest(req);
-    validateEmail(email)
-    writeEmailToDatabase(email)
-    if (debug) sendEmail(email) else placeEmailToQueue(email)
-    res.status(200).render('submit-mail-success')
+app.post('/sendMail', urlencodeParser, function (req, res) {
+  if (debug) console.log('got send email request')
+  let email = parseEmailFromRequest(req)
+  validateEmail(email)
+  writeEmailToDatabase(email)
+  debug ? sendEmail(email) : placeEmailToQueue(email)
+  res.status(200).render('submit-mail-success')
 
 })
 
-app.listen(app.get('port'),() =>{
-    console.log(`app listening at http://localhost:${app.get('port')}`)
+app.listen(app.get('port'), () => {
+  console.log(`app listening at http://localhost:${app.get('port')}`)
 })
 
+function parseEmailFromRequest (req) {
+  let email = new Email()
 
+  email.setFrom(req.body.from_email)
+  email.setFromName(req.body.from_name)
+  email.setTo(req.body.to_email)
+  email.setToName(req.body.to_name)
 
-function parseEmailFromRequest(req) {
-    let email = new Email()
-
-    email.setFromName(req.body.from_name)
-    email.setFromName(req.body.from_email)
-    email.setFromName(req.body.to_name)
-    email.setFromName(req.body.to_email)
-
-    return email
+  return email
 }
 
 function validateEmail () {
-    return true
+  return true
 }
 
-function sendMail(email) {
-    if (!email) return
+function sendMail (email) {
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'thuguituonglai45102@gmail.com',
+      pass: '135792468abc'
+    }
+  })
 
-    //TODO: đọc các cấu hình cần thiết để gửi dc mail từ .env
-    //TODO: "enable smtp google mail"
+  var mailOptions = {
+    from: email.getFrom(),
+    to: email.getTo(),
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  }
 
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Email sent: ' + info.response)
+    }
+  })
 }
 
-function placeEmailToQueue(email) {
-    setTimeout(10000000, () => sendMail(email))
+function placeEmailToQueue (email) {
+  setTimeout(() => sendMail(email), 1000)
 }
 
-function writeEmailToDatabase () {
+function writeEmailToDatabase (email) {
 
 }
