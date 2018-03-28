@@ -1,6 +1,8 @@
 'use strict'
 
-let Email = require('models/email')
+require('dotenv').config()
+
+let Email = require('./models/email')
 let mailler = require('nodemailer')
 
 let express = require('express')
@@ -10,14 +12,14 @@ var urlencodeParser = bodyParser.urlencoded({extended: false})
 let app = express()
 let debug = false
 
-app.set('port', 8000)
+app.set('port', process.env.PORT)
 app.set('view engine', 'ejs')
 
+// chỉ định thư mục static
 app.use(express.static(`${__dirname}/public`))
+
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({extended: true})) // for parsing application/x-www-form-urlencoded
-
-// Đây là thủ thuật để đưa đường dẫn vào trong thư mục bất kỳ
 
 app.get('/', (req, res) => {
   res.status(200).render('index')
@@ -38,7 +40,6 @@ app.listen(app.get('port'), () => {
 })
 
 function parseEmailFromRequest (req) {
-
   let email = new Email()
 
   email.setFromName(req.body.from_name)

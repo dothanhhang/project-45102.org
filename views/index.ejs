@@ -7,10 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!--Them link bootstrap-->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/assets/main.css">
 
     <title>Bức thư gửi tương lai</title>
@@ -70,6 +67,17 @@
 
     <!--Đoạn này Hằng và Minh code-->
     <form action="/sendMail" method="post">
+        <div class="form-group">
+            <label for="WriteDate">Từ:</label>
+            <input id="from_name" name="from_name"
+                   type="text" class="form-control col-md-6"
+                   aria-describedby="Date" placeholder="Tên người gửi">
+        </div>
+        <div class="form-group">
+            <label for="WriteDate">Sending on </label>
+            <input type="datetime-local" class="form-control col-md-3" id="WriteDate"
+                   aria-describedby="Date" placeholder="Ender Sending Date">
+        </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
@@ -77,7 +85,6 @@
                     <input name="from_name" type="text" class="form-control"
                            id="formGroupExampleInput1" placeholder="Enter name">
                 </div>
-                o
             </div>
             <div class="col">
                 <div class="form-group">
@@ -126,15 +133,9 @@
 </div>
 
 <!--các file js sau đây luôn luôn nên import ở cuối của body, để giảm thời gian load nội dung-->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+<script src="/assets/jquery/jquery.js"></script>
+<script src="/assets/popper/popper.js"></script>
+<script src="/assets/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>
 
