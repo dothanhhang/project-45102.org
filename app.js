@@ -1,5 +1,7 @@
 'use strict'
 
+// TODO: sử dụng file .env như của project TodayImDone
+
 let Email = require('models/email')
 let mailler = require('nodemailer')
 
@@ -10,6 +12,7 @@ var urlencodeParser = bodyParser.urlencoded({extended: false})
 let app = express()
 let debug = false
 
+//TODO: đọc PORT từ .env
 app.set('port',8000)
 app.set('view engine','ejs')
 
@@ -41,14 +44,12 @@ app.listen(app.get('port'),() =>{
 
 
 function parseEmailFromRequest(req) {
-
     let email = new Email()
 
     email.setFromName(req.body.from_name)
     email.setFromName(req.body.from_email)
     email.setFromName(req.body.to_name)
     email.setFromName(req.body.to_email)
-
 
     return email
 }
@@ -58,6 +59,10 @@ function validateEmail () {
 }
 
 function sendMail(email) {
+    if (!email) return
+
+    //TODO: đọc các cấu hình cần thiết để gửi dc mail từ .env
+    //TODO: "enable smtp google mail"
 
 }
 
