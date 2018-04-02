@@ -28,7 +28,8 @@ app.get('/', (req, res) => {
 app.post('/sendMail', urlencodeParser, function (req, res) {
   if (debug) console.log('got send email request')
   let email = parseEmailFromRequest(req)
-  validateEmail(email)
+  if (!validateEmail(email)) return
+
   writeEmailToDatabase(email)
   debug ? sendEmail(email) : placeEmailToQueue(email)
   res.status(200).render('submit-mail-success')
@@ -50,8 +51,8 @@ function parseEmailFromRequest (req) {
   return email
 }
 
-function validateEmail () {
-  return true
+function validateEmail (email) {
+  return !!email && email.getSendOn() > Date.now()
 }
 
 function sendMail (email) {
@@ -80,7 +81,12 @@ function sendMail (email) {
 }
 
 function placeEmailToQueue (email) {
-  setTimeout(() => sendMail(email), 1000)
+  setTimeout(() => sendMail(email), howfar(new Date(), email.getSendOn))
+}
+
+function howfar(date1, date2) {
+  // given date2 later than date 1
+  return date2.getTime() - date1.getTime
 }
 
 function writeEmailToDatabase (email) {
