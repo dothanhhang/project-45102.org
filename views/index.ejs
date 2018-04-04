@@ -10,66 +10,72 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="/assets/main.css">
 
+    <!--title font-->
+    <link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
+
     <title>Bức thư gửi tương lai</title>
 </head>
 <body>
 <div class="container">
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Dear my future</a>
+    </nav>
 
-    <h1>My dearly future!</h1>
-
-
-    <a href="/sendMail">Đăng ký thành viên </a>
-
-    <!--Đoạn này Hằng và Minh code-->
-    <form action="/sendMail" method="post">
-
-        <div class="form-group">
-            <label for="InputLetter">INPUT YOUR FUTURE LETTER HERE</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1"
-                      rows="3"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="WriteDate">Sending on:</label>
-            <input type="datetime-local" class="form-control" id="WriteDate" name="send_on"
-                   aria-describedby="Date" placeholder="Ender Sending Date">
-        </div>
+    <div class="paper">
 
 
-        <div class="form-group">
-                    <label for="formGroupExampleInput1">Tên người gửi </label>
-                    <input name="from_name" type="text" class="form-control"
-                           id="formGroupExampleInput1" placeholder="Enter name">
-        </div>
+        <form action="/sendMail" method="post" class="">
 
-        <div class="form-group">
-                    <label for="exampleInputEmail1">Email người gửi </label>
-                    <input name="from_email" type="email" class="form-control"
-                           id="exampleInputEmail1"
-                           aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
+            <div class="form-group">
+                <input name="subject" type="text" class="form-control subject"
+                       id="mail_subject" placeholder="Bức thư của ngày ">
+            </div>
 
-        <div class="form-group">
-                    <label for="formGroupExampleInput2">Tên người nhận</label>
-                    <input name="to_name" type="text" class="form-control"
-                           id="formGroupExampleInput2" placeholder="Enter name">
-        </div>
+            <div class="form-group">
+                <textarea class="form-control no-border" id="content" rows="10"></textarea>
+            </div>
 
-        <div class="form-group">
-                    <label for="exampleInputEmail2">Email người nhận </label>
-                    <input name="to_email" type="email" class="form-control"
-                           id="exampleInputEmail2"
-                           aria-describedby="emailHelp" placeholder="Enter email">
-        </div>
-
-        <div class="form-group">
-        <button type="SEND TO THE FUTURE" class="btn btn-primary">SEND TO THE FUTURE</button>
-        </div>
-
-    </form>
+            <!--<div class="form-group">-->
+                <!--<label for="WriteDate">Sending on:</label>-->
+                <!--<input type="datetime-local" class="form-control" id="WriteDate" name="send_on"-->
+                       <!--aria-describedby="Date" placeholder="Ender Sending Date">-->
+            <!--</div>-->
 
 
+            <!--<div class="form-group">-->
+                <!--<label for="formGroupExampleInput1">Tên người gửi </label>-->
+                <!--<input name="from_name" type="text" class="form-control"-->
+                       <!--id="formGroupExampleInput1" placeholder="Enter name">-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="exampleInputEmail1">Email người gửi </label>-->
+                <!--<input name="from_email" type="email" class="form-control"-->
+                       <!--id="exampleInputEmail1"-->
+                       <!--aria-describedby="emailHelp" placeholder="Enter email">-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="formGroupExampleInput2">Tên người nhận</label>-->
+                <!--<input name="to_name" type="text" class="form-control"-->
+                       <!--id="formGroupExampleInput2" placeholder="Enter name">-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+                <!--<label for="exampleInputEmail2">Email người nhận </label>-->
+                <!--<input name="to_email" type="email" class="form-control"-->
+                       <!--id="exampleInputEmail2"-->
+                       <!--aria-describedby="emailHelp" placeholder="Enter email">-->
+            <!--</div>-->
+
+            <div class="form-group">
+                <button type="SEND TO THE FUTURE" class="btn btn-primary no-rounded">SEND TO THE FUTURE</button>
+            </div>
+
+        </form>
+
+    </div>
 
 <!--các file js sau đây luôn luôn nên import ở cuối của body, để giảm thời gian load nội dung-->
 <script src="/assets/jquery/jquery.js"></script>

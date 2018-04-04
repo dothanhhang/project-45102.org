@@ -2,4 +2,68 @@
   .container{
     max-width: 970px;
   }
+
+  .navbar {
+    margin-top: 5px;
+  }
+  .navbar-brand {
+    font-family: 'Hi Melody', cursive;
+    font-size: 2.5em;
+    line-height: 1em;
+    margin: auto;
+  }
+
+  div.paper {
+    margin-top: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: "soleil", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.1em;
+    color: #4e4c57
+  }
+
+  div.paper input,
+  div.paper textarea {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+
+    border-radius: 0;
+
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  div.paper input.subject {
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+
+  div.paper .no-border,
+  div.paper .no-border {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 0;
+
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  div.paper .no-rounded {
+    border-radius: 0;
+  }
+
+  div.paper input {
+    font-size: 1em;
+  }
+
+  div.paper textarea {
+    font-size: 1em;
+  }
+
+  div.paper.subtitle {
+    color: #4e4c57;
+
+  }
 }
