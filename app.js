@@ -27,13 +27,14 @@ app.get('/', (req, res) => {
 
 app.post('/sendMail', urlencodeParser, function (req, res) {
   if (debug) console.log('got send email request')
-  let email = parseEmailFromRequest(req)
-  if (!validateEmail(email)) return
-
-  writeEmailToDatabase(email)
-  debug ? sendEmail(email) : placeEmailToQueue(email)
-  res.status(200).render('submit-mail-success')
-
+  if (!validateEmail(req.body)) {
+    res.status(200).render('submit-mail-err')
+  } else {
+    let email = parseEmailFromRequest(req)
+    writeEmailToDatabase(email)
+    debug ? sendEmail(email) : placeEmailToQueue(email)
+    return res.status(200).render('submit-mail-success')
+  }
 })
 
 app.listen(app.get('port'), () => {
@@ -47,12 +48,22 @@ function parseEmailFromRequest (req) {
   email.setFromName(req.body.from_name)
   email.setTo(req.body.to_email)
   email.setToName(req.body.to_name)
+  email.setSubject(req.body.subject)
+  email.setMessage(req.body.message)
+  email.setSendOn(new Date(req.body['send_on']).getTime())
 
   return email
 }
 
 function validateEmail (email) {
-  return !!email && email.getSendOn() > Date.now()
+  return !!email['from_email']
+  && !!email['from_name']
+  && !!email['to_email']
+  && !!email['to_name']
+  && !!email['subject']
+  && !!email['message']
+  && !!email['send_on']
+  && new Date(req.body['send_on']) > Date.now()
 }
 
 function sendMail (email) {
